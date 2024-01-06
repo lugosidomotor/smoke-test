@@ -35,6 +35,15 @@ def check_console_errors(url, webhook_url):
 
         load_time = time.time() - start_time  # Calculate page load time
 
+        # Taking screenshots
+        driver.save_screenshot("selenium-window-top.png")
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        time.sleep(5)  # Waiting for any lazy-loaded elements
+        driver.save_screenshot("selenium-window-bottom.png")
+        driver.execute_script("window.scrollTo(0, 0);")
+        time.sleep(5)  # Waiting before taking the final screenshot
+        driver.save_screenshot("selenium-window-top-again.png")
+
         # Collect and print console logs
         console_logs = driver.get_log("browser")
         errors = []
