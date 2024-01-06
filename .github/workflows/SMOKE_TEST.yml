@@ -1,0 +1,27 @@
+name: Smoke test
+on:
+  workflow_dispatch:
+
+jobs:  
+  regression-test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - uses: browser-actions/setup-chrome@v1
+    - run: chrome --version
+        
+    - name: Run the test
+      run: |
+        export URL="https://origo.hu"
+        export SLACK_WEBHOOK_URL=""
+        sudo apt install python3-pip -y && sudo pip3 install --upgrade pip && sudo pip3 install selenium
+        echo "📜 Console logs:" >> $GITHUB_STEP_SUMMARY
+        python3 smoke_test.py >> $GITHUB_STEP_SUMMARY
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: selenium-window.png
+        path: /home/runner/work/smoke-test/smoke-test/selenium-window*.png
