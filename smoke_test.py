@@ -3,6 +3,7 @@ import sys
 import time
 import requests
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -16,10 +17,12 @@ def send_slack_notification(webhook_url, message):
         print(f"Error sending Slack notification: {e}")
 
 def check_console_errors(url, webhook_url):
-    options = webdriver.ChromeOptions()
+    options = Options()
     options.add_argument("--headless")
     options.add_argument("--disable-gpu")
     options.add_argument("--window-size=1920x1080")
+    # Adding user-agent
+    options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36")
 
     driver = webdriver.Chrome(options=options)
 
