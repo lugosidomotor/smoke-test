@@ -57,11 +57,12 @@ def check_console_errors(url, webhook_url):
 
         # Send notification if errors are found
         if errors:
-            error_message = f"Errors found in the console logs while loading {url}: {errors}"
+            error_message = f"❌ Errors found in the console logs while loading {url}: {errors}"
             send_slack_notification(webhook_url, error_message)
             sys.exit(1)  # Exit with non-zero status code to indicate failure
         else:
-            print("No SEVERE errors found in the console logs while loading the webpage.")
+            print("✅ No SEVERE errors found in the console logs while loading the webpage.")
+            print(f"⏲️ Page loaded in {load_time:.2f} seconds.")
             load_message = f"Page loaded in {load_time:.2f} seconds."
             send_slack_notification(webhook_url, load_message)
 
