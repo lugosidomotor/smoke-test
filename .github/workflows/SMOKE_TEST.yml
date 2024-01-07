@@ -10,7 +10,7 @@ on:
         default: 'https://index.hu'
 
 jobs:  
-  regression-test:
+  smoke-test:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
