@@ -14,13 +14,14 @@ jobs:
         
     - name: Run the test
       run: |
-        export URL="https://origo.hu"
+        export URL="https://index.hu"
         export SLACK_WEBHOOK_URL=""
         sudo apt install python3-pip -y && sudo pip3 install --upgrade pip && sudo pip3 install selenium
         echo "📜 Console logs:" >> $GITHUB_STEP_SUMMARY
         python3 smoke_test.py >> $GITHUB_STEP_SUMMARY
 
     - name: Upload artifacts
+      if: always()
       uses: actions/upload-artifact@v3
       with:
         name: selenium-window.png
