@@ -1,4 +1,4 @@
-# Automated Website Monitoring System
+# 🩺 Automated Website Monitoring System
 
 This repository contains a Python script for automated website monitoring, leveraging the power of Selenium and GitHub Actions. It's designed to ensure the reliability and efficiency of your website by regularly testing and monitoring its performance.
 
